@@ -1,9 +1,9 @@
 name: Veracode Static Code Analysis
 
-run-name: Static Code Analysis - ${{ github.event.client_payload.event_type }}-${{ github.event.client_payload.repository.name }}-${{ github.event.client_payload.repository.branch }}-${{ github.event.client_payload.user_config.ref }}
+run-name: Static Code Analysis - ${{ github.event.client_payload.event_type }}-${{ github.event.client_payload.repository.name }}-${{ github.event.client_payload.user_config.sandbox_scan.branch }}-${{ github.event.client_payload.user_config.ref }}
 
 concurrency:
-  group: ${{ github.event.client_payload.event_type }}-${{ github.event.client_payload.repository.name }}-${{ github.event.client_payload.repository.branch }}-${{ github.event.client_payload.user_config.ref }}
+  group: ${{ github.event.client_payload.event_type }}-${{ github.event.client_payload.repository.name }}-${{ github.event.client_payload.user_config.sandbox_scan.branch }}-${{ github.event.client_payload.user_config.ref }}
   cancel-in-progress: true
 
 on:
