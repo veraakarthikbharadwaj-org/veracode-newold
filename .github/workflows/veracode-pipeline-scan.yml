@@ -73,7 +73,7 @@ jobs:
       # run the pipeline scan action
       - name: Veracode Pipeline-Scan
         id: pipeline-scan
-        uses: veracode/Veracode-pipeline-scan-action@master
+        uses: veracode/Veracode-pipeline-scan-action@v1.0.15
         with:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
@@ -85,7 +85,7 @@ jobs:
       - name: Veracode Pipeline Results
         if: always()
         id: prepare-results
-        uses: Veracode/github-actions-integration-helper@main
+        uses: Veracode/github-actions-integration-helper@v0.1.2
         with:
           action: 'preparePipelineResults'
           token: ${{ inputs.token }}
