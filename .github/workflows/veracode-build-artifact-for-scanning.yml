@@ -25,17 +25,9 @@ jobs:
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
 
-  build-java-gradle:
-    if: ${{ inputs.event_name == 'java-gradle-pipeline-scan' || inputs.event_name == 'java-gradle-policy-scan' || inputs.event_name == 'java-gradle-sandbox-scan' }}
+  build-packager:
+    if: ${{ contains(fromJson('["java-gradle-pipeline-scan", "java-gradle-policy-scan", "java-gradle-sandbox-scan", "source-code-pipeline-scan", "source-code-policy-scan", "source-code-sandbox-scan", "go-pipeline-scan","go-policy-scan", "go-sandbox-scan"]'), inputs.event_name) }}
     uses: ./.github/workflows/veracode-build-java-cli-gradle.yml
-    with:
-      repository: ${{ inputs.repository }}
-      ref: ${{ inputs.ref }}
-      token: ${{ inputs.token }}
-
-  build-source-code-scan:
-    if: ${{ inputs.event_name == 'source-code-pipeline-scan' || inputs.event_name == 'source-code-policy-scan'  || inputs.event_name == 'source-code-sandbox-scan'}}
-    uses: ./.github/workflows/veracode-build-source-code.yml
     with:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
@@ -44,14 +36,6 @@ jobs:
   build-dot-net-package:
     if: ${{ inputs.event_name == 'dot-net-pipeline-scan' || inputs.event_name == 'dot-net-policy-scan'  || inputs.event_name == 'dot-net-sandbox-scan'}}
     uses: ./.github/workflows/veracode-build-dot-net.yml
-    with:
-      repository: ${{ inputs.repository }}
-      ref: ${{ inputs.ref }}
-      token: ${{ inputs.token }}
-
-  build-go-package:
-    if: ${{ inputs.event_name == 'go-pipeline-scan' || inputs.event_name == 'go-policy-scan'  || inputs.event_name == 'go-sandbox-scan'}}
-    uses: ./.github/workflows/veracode-build-go.yml
     with:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
