@@ -41,8 +41,8 @@ jobs:
         ./install.sh system
         cd /home/runner/work/veracode/veracode/
         veracode package --source . --output veracode-artifacts --trust
-        zip veracode.zip veracode-artifacts/* -x .zip .tar .tar.gz .gz
+        zip veracode-artifact.zip veracode-artifacts/* -x .zip .tar .tar.gz .gz
     - uses: actions/upload-artifact@v4
       with:
         name: veracode-artifact
-        path: veracode.zip
+        path: veracode-artifact.zip
