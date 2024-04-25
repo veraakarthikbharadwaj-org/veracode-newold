@@ -79,7 +79,7 @@ jobs:
           vid: ${{ secrets.VERACODE_API_ID }}
           vkey: ${{ secrets.VERACODE_API_KEY }}
           veracode_policy_name: ${{ inputs.policy_name }}
-          file: ${{ env.veracode_artifact }}
+          file: ./veracode_artifact_directory/${{ env.veracode_artifact }}
           fail_build: ${{ inputs.break_build_policy_findings }}
           use_upgraded_version: true
 
