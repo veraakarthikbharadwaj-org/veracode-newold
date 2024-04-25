@@ -68,6 +68,7 @@ jobs:
       - name: Get the name of the downloaded files
         run: |
           artifact_file=$(ls -1 ./veracode_artifact_directory | head -n 1)
+          echo "veracode_artifact=$artifact_file"
           echo "veracode_artifact=$artifact_file" >> $GITHUB_ENV
 
       # run the pipeline scan action
