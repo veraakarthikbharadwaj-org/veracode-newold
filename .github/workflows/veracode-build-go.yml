@@ -68,10 +68,8 @@ jobs:
           ./install.sh system
           cd /home/runner/work/veracode/veracode/
           veracode package --source . --output veracode-artifacts --trust
-          ls
-          ls veracode-artifacts/
 
       - uses: actions/upload-artifact@v4
         with:
           name: veracode-artifact
-          path: ./veracode
+          path: veracode-artifacts/veracode-auto-pack-veracode-go.zip
