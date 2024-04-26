@@ -12,7 +12,7 @@ on:
       token:
         required: true
         type: string
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,9 +23,22 @@ jobs:
         ref: ${{ inputs.ref }}
         token: ${{ inputs.token }}
 
-    - name: Create zip archive
-      run: zip -r veracode.zip . -x .git/**\* bin/**\* e2e/**\* tests/**\* node_modules/**\* *.pyd *.mwb *.exe *.dll *.bin *.png *.xml *.bat *.g2p *.gp4 *.wav *.jpg *.svg *.sfx *.prx *.sb *.nrm *.config *.ini *.pdf *.dat *.docx *.whl *.so *_arm64 *_armhf *_x64 *.xlsm *.sql
-        
+    - name: Package the appliccation
+      env:
+        VERACODE_API_KEY_ID: '${{ secrets.VERACODE_API_ID }}'
+        VERACODE_API_KEY_SECRET: '${{ secrets.VERACODE_API_KEY }}'
+      run: |
+        cd veracode-helper/helper/cli
+        cliFile=$(ls -1 . | head -n 1)
+        cliFileName=$(echo "$cliFile" | cut -c 1-$((${#cliFile}-7)))
+        tar -zxvf $cliFile
+        cd $cliFileName
+        chmod +x install.sh
+        ./install.sh system
+        cd /home/runner/work/veracode/veracode/
+        veracode package --source . --output veracode-artifacts --trust
+        zip veracode.zip veracode-artifacts/* -x .zip .tar .tar.gz .gz
+
     - uses: actions/upload-artifact@v4
       with:
         name: veracode-artifact
