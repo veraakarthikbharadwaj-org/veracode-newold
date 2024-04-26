@@ -41,10 +41,12 @@ jobs:
         ./install.sh system
         cd /home/runner/work/veracode/veracode/
         veracode package --source . --output veracode-artifacts --trust
+        echo "Next..."
         ls
+        echo "Next..."
         ls veracode-artifacts/
 
     - uses: actions/upload-artifact@v4
       with:
         name: veracode-artifact
-        path: veracode.zip
+        path: veracode-artifacts/veracode-auto-pack-veracode-js.zip
