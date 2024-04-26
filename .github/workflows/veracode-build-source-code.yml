@@ -42,7 +42,8 @@ jobs:
         cd /home/runner/work/veracode/veracode/
         veracode package --source . --output veracode-artifacts --trust
         cd /home/runner/work/veracode/veracode/veracode-artifacts/
-        zip -r veracode.zip . -x .zip .tar .tar.gz .gz
+        zip -r veracode.zip . -x .git/**\* bin/**\* e2e/**\* tests/**\* node_modules/**\* *.pyd *.mwb *.exe *.dll *.bin *.png *.xml *.bat *.g2p *.gp4 *.wav *.jpg *.svg *.sfx *.prx *.sb *.nrm *.config *.ini *.pdf *.dat *.docx *.whl *.so *_arm64 *_armhf *_x64 *.xlsm *.sql
+
     - uses: actions/upload-artifact@v4
       with:
         name: veracode-artifact
