@@ -23,6 +23,10 @@ jobs:
         ref: ${{ inputs.ref }}
         token: ${{ inputs.token }}
 
+    - uses: actions/checkout@v4
+      with:
+        path: 'veracode-helper'
+
     - name: Package the appliccation
       env:
         VERACODE_API_KEY_ID: '${{ secrets.VERACODE_API_ID }}'
