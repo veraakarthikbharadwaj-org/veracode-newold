@@ -27,9 +27,7 @@ jobs:
       with:
         path: 'veracode-helper'
         
-    - name: Verify php version
-      run: |
-        php -v
+    - uses: php-actions/composer@v6
       
     - name: Package the appliccation
       env:
@@ -45,12 +43,8 @@ jobs:
         ./install.sh system
         cd /home/runner/work/veracode/veracode/
         veracode package --source . --output veracode-artifacts --trust
-        echo "Next..."
-        ls
-        echo "Next..."
-        ls veracode-artifacts/
 
     - uses: actions/upload-artifact@v4
       with:
         name: veracode-artifact
-        path: veracode-artifacts/veracode-auto-pack-veracode-js.zip
+        path: veracode-artifacts/veracode-auto-pack-e2e-php.zip
