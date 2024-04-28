@@ -31,8 +31,6 @@ jobs:
       with:
         ruby-version: '3.3' # Not needed with a .ruby-version file
 
-    - run: bundle exec rake
-
     - name: Package the appliccation
       env:
         VERACODE_API_KEY_ID: '${{ secrets.VERACODE_API_ID }}'
