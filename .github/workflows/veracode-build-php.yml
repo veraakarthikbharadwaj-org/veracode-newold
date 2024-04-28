@@ -27,11 +27,6 @@ jobs:
       with:
         path: 'veracode-helper'
 
-    - uses: php-actions/composer@v6
-      with:
-        command: install
-        dev: no
-
     - name: Package the appliccation
       env:
         VERACODE_API_KEY_ID: '${{ secrets.VERACODE_API_ID }}'
