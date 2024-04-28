@@ -36,6 +36,9 @@ on:
       - python-pipeline-scan
       - python-policy-scan
       - python-sandbox-scan
+      - swift-pipeline-scan
+      - swift-policy-scan
+      - swift-sandbox-scan
 
 jobs:
   register:
