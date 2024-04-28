@@ -27,7 +27,7 @@ jobs:
       with:
         path: 'veracode-helper'
 
-    - uses: php-actions/composer@v5
+    - uses: php-actions/composer@v6
 
     - name: Package the appliccation
       env:
