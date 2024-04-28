@@ -112,3 +112,11 @@ jobs:
       repository: ${{ inputs.repository }}
       ref: ${{ inputs.ref }}
       token: ${{ inputs.token }}
+
+  build-swift-scan:
+    if: ${{ inputs.event_name == 'swift-pipeline-scan' || inputs.event_name == 'swift-policy-scan'  || inputs.event_name == 'swift-sandbox-scan'}}
+    uses: ./.github/workflows/veracode-build-swift.yml
+    with:
+      repository: ${{ inputs.repository }}
+      ref: ${{ inputs.ref }}
+      token: ${{ inputs.token }}
